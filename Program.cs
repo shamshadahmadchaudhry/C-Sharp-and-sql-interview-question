@@ -1,4 +1,6 @@
-﻿#region namespace
+﻿
+// Basic C# interview Questions
+#region namespace
 // A namespace is a way to organize our code elements such as classes,interface,structs,enum and delegates into a
 // a hirerchical formats.
 // The biggest advantage of using namespace we can create class with the same name into different namesapce it will not clash
@@ -1843,6 +1845,123 @@ Dependency Inversion Principle:- Dependency inversion principles is saying inste
  
  */
 #endregion
+#region Difference Between CopyTo and Clone
+//using System;
+//namespace CopyToClone
+//{
+//        public class program
+//    {
+//        public static void Main()
+//        {
+//            string[] str1 = { "A", "B", "C", "D" };
+//            string[] str2 = new string[4];
+//            str1.CopyTo(str2, 0);
+//            str2[1] = null; 
+//            Console.WriteLine(str2);
+
+//            //string[] str1 = { "A", "B", "C", "D" };
+//            //string[] str2 = (string[])str1.Clone();   
+//            //Console.WriteLine(str2);
+
+//        }
+//    }
+//} 
+#endregion
+#region how to called third party api with the help of httpclient in our code
+//using DocumentFormat.OpenXml.Office2021.DocumentTasks;
+//using Newtonsoft.Json; 
+//using System.Net.Http;
+//using System.Text;
+//using System.Text.Json.Serialization;
+//using System.Threading.Tasks;
+
+//namespace TestConsoleApp
+//{ 
+//    public class ApiResponse
+//    {
+//        public int Id { get; set; }
+//        public string Name { get; set; }
+//        public string EmailId { get; set; }
+//    }
+//    public class CRUD
+//    {
+//        public CRUD()
+//        { 
+//        }
+//        private readonly HttpClient _httpClient;
+//        public CRUD(HttpClient httpClient)
+//        {
+//            _httpClient = httpClient;
+//        }
+//        public async Task<ApiResponse> GetAsync(string url)
+//        {
+//            var response = await _httpClient.GetAsync(url);
+//            response.EnsureSuccessStatusCode();
+//            var content = await response.Content.ReadAsStringAsync();
+//            return JsonConvert.DeserializeObject<ApiResponse>(content);
+//        }
+//        public async Task<ApiResponse> PostAsync(string url,ApiResponse data)
+//        {
+//            var json = JsonConvert.SerializeObject(data);
+//            var content = new StringContent(json, Encoding.UTF8, "Application/json");
+//            var response = await _httpClient.PostAsync(url, content);
+//            response.EnsureSuccessStatusCode();
+//            var responseContent = await response.Content.ReadAsStringAsync();
+//            return JsonConvert.DeserializeObject<ApiResponse>(responseContent);
+//        }
+//    }
+//    public class program
+//    {
+//        public static void Main()
+//        {
+//            CRUD cRUD = new CRUD();
+//            cRUD.GetAsync("");
+//        }
+//    }
+//}
+#endregion
+#region how to achieve abstraction
+//using System;
+//namespace TestConsoleApp
+//{
+//    public abstract class Animal
+//    {
+//        public abstract void MakeSound();
+//        public void Eat()
+//        {
+//            Console.WriteLine("Eating......");
+//        }
+//    }
+//    public class Cat : Animal
+//    {
+//        public override void MakeSound()
+//        {
+//            Console.WriteLine("Meow.....");
+//        }
+//    }
+//    public class Dog : Animal
+//    {
+//        public override void MakeSound()
+//        {
+//            Console.WriteLine("Bhaw Bhaw.....");
+//        }
+//    }
+//    public class program 
+//    {
+//        public static void Main()
+//        { 
+//            Cat cat = new Cat();
+//            cat.Eat();
+//            cat.MakeSound();
+//            Dog dog= new Dog();
+//            dog.Eat();
+//            dog.MakeSound();
+//        }
+
+
+//    }
+//}
+#endregion
 
 
 
@@ -2947,7 +3066,7 @@ independent components.
 //    }
 //}
 #endregion
-#region  Sort Array
+#region  Sort an Array
 //using System;
 //namespace TestConsoleApp
 //{
@@ -2987,7 +3106,39 @@ independent components.
 //}
 
 #endregion
-#region
+#region Reverse a string and sort an array 
+//using DocumentFormat.OpenXml.Wordprocessing;
+//using System;
+//namespace TestConsoleApp
+//{
+//    public class program
+//    {
+//        public static void Main()
+//        {
+//            //var name = "shamshad";
+//            //int length = name.Length;
+//            //for (int i = 0; i < name.Length; i++)
+//            //{
+//            //    Console.Write(name[length - 1]);
+//            //    length = length - 1;
+//            //}
+//            int[] arr = { 1, 2, 3, 4, 5, 6, 7 };
+//            int length = arr.Length;
+//            Console.WriteLine(length);
+//            for (int i = 0; i < length/2; i++)
+//            {
+//                //Console.WriteLine("rem"+length);
+//                //Console.WriteLine("i" + i);
+//                int temp = arr[i];
+//                arr[i] = arr[length - 1 - i];
+//                arr[length - 1 - i] = temp;
+//            }
+//            Console.WriteLine("New arry" + string.Join(",", arr));
+//        }
+//    }
+//} 
+#endregion
+#region compare a value from the first array to second array and addition matching element from the array 
 //using System;
 //using System.Collections.Generic;
 
@@ -2997,35 +3148,190 @@ independent components.
 //    {
 //        public static void Main()
 //        {
-//            int[] arr = { 1,2,3,4,5,6};
-//            int[] arr1 = { 2, 4, 6,2 };
+//            int[] arr = { 1, 2, 3, 4, 5, 6 };
+//            int[] arr1 = { 2, 4, 6, 2 };
 //            for (int i = 0; i < arr.Length; i++)
 //            {
-//                int result=0;
+//                int result = 0;
 //                for (int j = 0; j < arr1.Length; j++)
 //                {
-//                    if(arr[i] == arr1[j])
+//                    if (arr[i] == arr1[j])
 //                    {
 //                        if (result > 0)
 //                        {
 //                            result = result + arr1[j];
 //                        }
-//                        else {
+//                        else
+//                        {
 //                            result = arr[i] + arr1[j];
 //                        }
 //                    }
 
 //                }
-//                if(result>0)
+//                if (result > 0)
 //                {
 //                    Console.WriteLine(result);
-//                } 
+//                }
 //            }
 //        }
 //    }
 //}
 #endregion
 
+#region Sort an array and after sorting revesre this array
+//using System;
+//namespace TestConsoleApp
+//{
+//    public class program
+//    {
+//        public static void Main()
+//        {
+//            int[] numbers = { 1, 2, 3, 12, 4, 11, 5, 10, 6, 8, 7 };
+//            for (int i = 0; i < numbers.Length; i++)
+//            {
+//                int temp;
+//                for (int j = i + 1; j < numbers.Length; j++)
+//                {
+//                    if (numbers[i] > numbers[j])
+//                    {
+//                        temp = numbers[i];
+//                        numbers[i] = numbers[j];
+//                        numbers[j] = temp;
+//                    }
+//                }
+//            }
+//            Console.WriteLine("Sorted Array");
+//            for (int k = 0; k < numbers.Length; k++)
+//            {
+//                Console.Write(string.Join(",", numbers[k]));
+//            }
+//            Console.WriteLine();
+//            int length = numbers.Length;
+//            for (int i = 0; i < length / 2; i++)
+//            {
+//                int temp = numbers[i];
+//                numbers[i] = numbers[length - 1 - i];
+//                numbers[length - 1 - i] = temp;
+//            }
+//            Console.WriteLine("Reverse Array");
+//            for (int k = 0; k < numbers.Length; k++)
+//            {
+//                Console.Write(string.Join(",", numbers[k]));
+//            }
+//        }
+//    }
+//}
+#endregion
+
+#region Check Count of duplicate charector from the string and also remove space from the string during program execution
+//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+
+//namespace Test
+//{
+//    public class program
+//    {
+//        public static void Main()
+//        {
+//            var name = "shamshad ahmad";
+//            Dictionary<char,int> charCount = new Dictionary<char, int>();
+
+//            foreach (var item in name)
+//            { 
+//                if(char.IsWhiteSpace(item))
+//                {
+//                    continue;
+//                }
+//                if (charCount.ContainsKey(item))
+//                {
+//                    charCount[item]++;
+//                }
+//                else
+//                {
+//                    charCount[item] = 1;
+//                }
+//            }
+//            foreach (var pair in charCount)
+//            {
+//                Console.WriteLine($"{pair.Key}:{pair.Value}");
+//            }
+//        }
+//    }
+//}
+#endregion
+
+#region Check duplicate/pair element from the array
+//using System;
+//using System.Collections.Generic;
+
+//namespace TestConsoleApp
+//{
+//    public class program
+//    {
+//        public static void Main()
+//        {
+//            int[] arr = { 1, 2, 3, 4, 5, 4, 3, 4, 5, 2, 7, 8, 9, 6, 9, 6 };
+//            Dictionary<int, int> intCount = new Dictionary<int, int>();
+
+//            foreach (var item in arr)
+//            {
+//                if(intCount.ContainsKey(item))
+//                {
+//                    intCount[item]++;
+//                }
+//                else
+//                {
+//                    intCount[item] = 1;
+//                }
+//            }
+//            foreach (var pair in intCount)
+//            {
+//                Console.WriteLine($"{pair.Key}:{pair.Value}");
+//            }
+//        }
+//    }
+//}
+#endregion
+
+#region Compare two string with the help of function the second string all char is exist or not into first one if exist the return true else false
+//using System;
+//using System.Collections.Generic;
+
+//namespace TestConsoleApp
+//{
+//    public class CompareString
+//    {
+//        public bool chekString(string str1,string str2)
+//        {
+//            if(str1==str2)
+//            {
+//                return true;
+//            }
+//            HashSet<char> dic = new();
+//            foreach (var item in str2)
+//            {
+//                dic.Add(item);
+//            }
+//            for (int i = 0; i < str1.Length; i++)
+//            {
+//                if (dic.Contains(str1[i]))
+//                    dic.Remove(str1[i]);
+//            }
+//            return dic.Count == 0;
+//        }
+//    }
+//    public class program
+//    {
+//        public static void Main()
+//        {
+//            CompareString compareString = new CompareString();
+//            bool val = compareString.chekString("cordshnrvshdsdsarrr", "coder");
+//            Console.WriteLine(val); 
+//        }
+//    }
+//}
+#endregion
 
 
 // Sql Queries
@@ -3137,356 +3443,28 @@ independent components.
  */
 #endregion
 
-//using System;
-//using System.Reflection;
-
-//namespace TestConsoleApp
-//{
-//    public class program
-//    {
-//        public static void Main()
-//        {
-//            Type t = typeof(string);
-//            Console.WriteLine("Name : {0}", t.Name);
-//            Console.WriteLine("Full Name : {0}", t.FullName);
-//            Console.WriteLine("Namespace : {0}", t.Namespace);
-//            Console.WriteLine("Base Type : {0}", t.BaseType);
-//            Assembly assembly= Assembly.GetExecutingAssembly();
-//        }
-//    }
-//}
-
-
-//using System;
-//namespace CopyToClone
-//{
-//        public class program
-//    {
-//        public static void Main()
-//        {
-//            string[] str1 = { "A", "B", "C", "D" };
-//            string[] str2 = new string[4];
-//            str1.CopyTo(str2, 0);
-//            str2[1] = null; 
-//            Console.WriteLine(str2);
-
-//            //string[] str1 = { "A", "B", "C", "D" };
-//            //string[] str2 = (string[])str1.Clone();   
-//            //Console.WriteLine(str2);
-
-//        }
-//    }
-//} 
-
-#region called third party api 
-//using DocumentFormat.OpenXml.Office2021.DocumentTasks;
-//using Newtonsoft.Json; 
-//using System.Net.Http;
-//using System.Text;
-//using System.Text.Json.Serialization;
-//using System.Threading.Tasks;
-
-//namespace TestConsoleApp
-//{ 
-//    public class ApiResponse
-//    {
-//        public int Id { get; set; }
-//        public string Name { get; set; }
-//        public string EmailId { get; set; }
-//    }
-//    public class CRUD
-//    {
-//        public CRUD()
-//        { 
-//        }
-//        private readonly HttpClient _httpClient;
-//        public CRUD(HttpClient httpClient)
-//        {
-//            _httpClient = httpClient;
-//        }
-//        public async Task<ApiResponse> GetAsync(string url)
-//        {
-//            var response = await _httpClient.GetAsync(url);
-//            response.EnsureSuccessStatusCode();
-//            var content = await response.Content.ReadAsStringAsync();
-//            return JsonConvert.DeserializeObject<ApiResponse>(content);
-//        }
-//        public async Task<ApiResponse> PostAsync(string url,ApiResponse data)
-//        {
-//            var json = JsonConvert.SerializeObject(data);
-//            var content = new StringContent(json, Encoding.UTF8, "Application/json");
-//            var response = await _httpClient.PostAsync(url, content);
-//            response.EnsureSuccessStatusCode();
-//            var responseContent = await response.Content.ReadAsStringAsync();
-//            return JsonConvert.DeserializeObject<ApiResponse>(responseContent);
-//        }
-//    }
-//    public class program
-//    {
-//        public static void Main()
-//        {
-//            CRUD cRUD = new CRUD();
-//            cRUD.GetAsync("");
-//        }
-//    }
-//}
-#endregion
-
-#region
-//using DocumentFormat.OpenXml.Wordprocessing;
-//using System;
-//namespace TestConsoleApp
-//{
-//    public class program
-//    {
-//        public static void Main()
-//        {
-//            //var name = "shamshad";
-//            //int length = name.Length;
-//            //for (int i = 0; i < name.Length; i++)
-//            //{
-//            //    Console.Write(name[length - 1]);
-//            //    length = length - 1;
-//            //}
-//            int[] arr = { 1, 2, 3, 4, 5, 6, 7 };
-//            int length = arr.Length;
-//            Console.WriteLine(length);
-//            for (int i = 0; i < length/2; i++)
-//            {
-//                //Console.WriteLine("rem"+length);
-//                //Console.WriteLine("i" + i);
-//                int temp = arr[i];
-//                arr[i] = arr[length - 1 - i];
-//                arr[length - 1 - i] = temp;
-//            }
-//            Console.WriteLine("New arry" + string.Join(",", arr));
-//        }
-//    }
-//} 
-#endregion
-
-#region
-//using System;
-//namespace TestConsoleApp
-//{
-//    public class program
-//    {
-//        public static void Main()
-//        {
-//            int[] numbers = { 1, 2, 3,12, 4,11, 5,10, 6, 8, 7 };
-//            for (int i = 0; i < numbers.Length; i++)
-//            {
-//                int temp;
-//                for (int j = i+1; j < numbers.Length; j++)
-//                {
-//                    if (numbers[i] > numbers[j])
-//                    {
-//                        temp = numbers[i];
-//                        numbers[i] = numbers[j];
-//                        numbers[j] = temp;
-//                    }
-//                }
-//            }
-//            Console.WriteLine("Sorted Array");
-//            for (int k = 0; k < numbers.Length; k++)
-//            {
-//                Console.Write(string.Join(",", numbers[k]));
-//            }
-//            Console.WriteLine();
-//            int length = numbers.Length;
-//            for (int i = 0; i < length/2; i++)
-//            {
-//                int temp = numbers[i];
-//                numbers[i] = numbers[length - 1 - i];
-//                numbers[length - 1 - i] = temp;
-//            }
-//            Console.WriteLine("Reverse Array");
-//            for (int k = 0; k < numbers.Length; k++)
-//            {
-//                Console.Write(string.Join(",", numbers[k]));
-//            }
-//        }
-//    }
-//}
-#endregion
-
-#region
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-
-//namespace Test
-//{
-//    public class program
-//    {
-//        public static void Main()
-//        {
-//            var name = "shamshad ahmad";
-//            Dictionary<char,int> charCount = new Dictionary<char, int>();
-
-//            foreach (var item in name)
-//            { 
-//                if(char.IsWhiteSpace(item))
-//                {
-//                    continue;
-//                }
-//                if (charCount.ContainsKey(item))
-//                {
-//                    charCount[item]++;
-//                }
-//                else
-//                {
-//                    charCount[item] = 1;
-//                }
-//            }
-//            foreach (var pair in charCount)
-//            {
-//                Console.WriteLine($"{pair.Key}:{pair.Value}");
-//            }
-//        }
-//    }
-//}
-#endregion
-
-#region
-//using System;
-//using System.Collections.Generic;
-
-//namespace TestConsoleApp
-//{
-//    public class program
-//    {
-//        public static void Main()
-//        {
-//            int[] arr = { 1, 2, 3, 4, 5, 4, 3, 4, 5, 2, 7, 8, 9, 6, 9, 6 };
-//            Dictionary<int, int> intCount = new Dictionary<int, int>();
-
-//            foreach (var item in arr)
-//            {
-//                if(intCount.ContainsKey(item))
-//                {
-//                    intCount[item]++;
-//                }
-//                else
-//                {
-//                    intCount[item] = 1;
-//                }
-//            }
-//            foreach (var pair in intCount)
-//            {
-//                Console.WriteLine($"{pair.Key}:{pair.Value}");
-//            }
-//        }
-//    }
-//}
-#endregion
-
-#region
-//using System;
-//using System.Collections.Generic;
-
-//namespace TestConsoleApp
-//{
-//    public class CompareString
-//    {
-//        public bool chekString(string str1,string str2)
-//        {
-//            if(str1==str2)
-//            {
-//                return true;
-//            }
-//            HashSet<char> dic = new();
-//            foreach (var item in str2)
-//            {
-//                dic.Add(item);
-//            }
-//            for (int i = 0; i < str1.Length; i++)
-//            {
-//                if (dic.Contains(str1[i]))
-//                    dic.Remove(str1[i]);
-//            }
-//            return dic.Count == 0;
-//        }
-//    }
-//    public class program
-//    {
-//        public static void Main()
-//        {
-//            CompareString compareString = new CompareString();
-//            bool val = compareString.chekString("cordshnrvshdsdsarrr", "coder");
-//            Console.WriteLine(val); 
-//        }
-//    }
-//}
-#endregion
-
-#region
-//using System;
-//using System.Collections.Generic;
-
-//namespace Test
-//{
-//    public class program
-//    { 
-//        public static void Main()
-//        {
-//             int a=0,b=1,c;
-//            Console.Write("{0} {1} ", a, b);
-//            for (int i = 0; i < 10; i++)
-//            {
-//                c = a + b;
-//                Console.Write("{0} ", c);
-//                a = b; 
-//                b=c;
-//            }
-//        }
-//    }
-//}
-#endregion
 
 
 
 
-//using System;
-//namespace TestConsoleApp
-//{
-//    public abstract class Animal
-//    {
-//        public abstract void MakeSound();
-//        public void Eat()
-//        {
-//            Console.WriteLine("Eating......");
-//        }
-//    }
-//    public class Cat : Animal
-//    {
-//        public override void MakeSound()
-//        {
-//            Console.WriteLine("Meow.....");
-//        }
-//    }
-//    public class Dog : Animal
-//    {
-//        public override void MakeSound()
-//        {
-//            Console.WriteLine("Bhaw Bhaw.....");
-//        }
-//    }
-//    public class program 
-//    {
-//        public static void Main()
-//        { 
-//            Cat cat = new Cat();
-//            cat.Eat();
-//            cat.MakeSound();
-//            Dog dog= new Dog();
-//            dog.Eat();
-//            dog.MakeSound();
-//        }
 
-        
-//    }
-//}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
